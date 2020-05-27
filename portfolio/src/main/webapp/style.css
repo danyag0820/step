@@ -1,7 +1,8 @@
 #content {
   margin-left: auto;
   margin-right: auto;
-  width: 650px;
+  width: 80%;
+  /* text-align: center; */
 }
 
 #greeting-container {
@@ -11,4 +12,37 @@
 img {
     height: 20%;
     width: 20%;
+}
+
+.photos {
+  /* Prevent vertical gaps */
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.parallax {
+  /* Full height */
+  height: 500px;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.titleImage {
+    text-align: center;
+    background-image: url("/images/natureImages/yellowFlowers.JPG");
+}
+
+.title {
+  display: inline-block;
+
+  font-size: 50px;
+  font-family: 'Shadows Into Light', cursive;
+  margin-left: auto;
+  margin-right: auto;
 }
