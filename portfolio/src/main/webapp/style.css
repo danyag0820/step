@@ -3,6 +3,8 @@
   margin-right: auto;
   width: 80%;
   /* text-align: center; */
+  background-color: #9c7c95;
+
 }
 
 #greeting-container {
@@ -24,7 +26,7 @@ img {
 
 .parallax {
   /* Full height */
-  height: 500px;
+  height: 45%;
 
   /* Create the parallax scrolling effect */
   background-attachment: fixed;
@@ -38,11 +40,35 @@ img {
     background-image: url("/images/natureImages/yellowFlowers.JPG");
 }
 
-.title {
+.titleText {
   display: inline-block;
-
-  font-size: 50px;
-  font-family: 'Shadows Into Light', cursive;
+  margin-top: 15%;
+  font-size: 10em;
+  font-family: 'Nothing You Could Do', cursive;
   margin-left: auto;
   margin-right: auto;
+  color: #9c7c95
+}
+
+.labels {
+  display: inline-block;
+  margin-top: 1%;
+  font-size: 8em;
+  font-family: 'Nothing You Could Do', cursive;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+  text-align: center;
+}
+
+.regText {
+    color: white;
+    font-family: 'Antic Slab', serif;
+    font-size: .3em;
+    text-align: center;
+}
+
+.favClassesImage {
+    text-align: center;
+    background-image: url("/images/natureImages/IMG-4901.JPG");
 }
