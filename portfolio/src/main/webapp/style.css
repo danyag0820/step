@@ -3,7 +3,7 @@
   margin-right: auto;
   width: 80%;
   /* text-align: center; */
-  background-color: #9c7c95;
+  background-color: #FEA693;
 
 }
 
@@ -17,10 +17,10 @@ img {
 }
 
 .photos {
-  /* Prevent vertical gaps */
 
   margin-left: auto;
   margin-right: auto;
+  padding-bottom:7%;
 }
 
 
@@ -47,12 +47,13 @@ img {
   font-family: 'Nothing You Could Do', cursive;
   margin-left: auto;
   margin-right: auto;
-  color: #9c7c95
+  color: #FEA693;
 }
 
 .labels {
   display: inline-block;
   margin-top: 1%;
+  margin-bottom:1.5%;
   font-size: 8em;
   font-family: 'Nothing You Could Do', cursive;
   margin-left: auto;
@@ -71,4 +72,13 @@ img {
 .favClassesImage {
     text-align: center;
     background-image: url("/images/natureImages/IMG-4901.JPG");
+}
+
+.linksImage {
+    text-align: center;
+}
+
+.galleryBackgroundImage {
+    text-align: center;
+    background-image: url("/images/natureImages/IMG-4880.JPG");
 }
