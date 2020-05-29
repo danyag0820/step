@@ -43,7 +43,7 @@ img {
 .titleText {
   display: inline-block;
   margin-top: 15%;
-  font-size: 10em;
+  font-size: 7em;
   font-family: 'Nothing You Could Do', cursive;
   margin-left: auto;
   margin-right: auto;
@@ -54,7 +54,7 @@ img {
   display: inline-block;
   margin-top: 1%;
   margin-bottom:1.5%;
-  font-size: 8em;
+  font-size: 6em;
   font-family: 'Nothing You Could Do', cursive;
   margin-left: auto;
   margin-right: auto;
@@ -65,7 +65,7 @@ img {
 .regText {
     color: white;
     font-family: 'Antic Slab', serif;
-    font-size: .3em;
+    font-size: .2em;
     text-align: center;
 }
 
@@ -76,9 +76,16 @@ img {
 
 .linksImage {
     text-align: center;
+    padding-bottom: 2%;
 }
 
 .galleryBackgroundImage {
     text-align: center;
     background-image: url("/images/natureImages/IMG-4880.JPG");
+}
+
+.photoLinks {
+    height: 20%;
+    width: 20%;
+    padding-bottom: 5%;
 }
