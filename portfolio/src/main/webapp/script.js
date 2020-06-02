@@ -12,31 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/**
- * Fetches a hello statement from the server and adds it to the DOM.
- */
-function getData() {
-    console.log('Fetching Hello [Your Name]');
-    const reponsePromise = fetch('data');
-    reponsePromise.then(handleResponse);
-}
+// function getRandomQuoteUsingArrowFunctions() {
+//   fetch('/random-quote').then(response => response.text()).then((quote) => {
+//     document.getElementById('quote-container').innerText = quote;
+//   });
+// }
 
 /**
- * Handles response by converting it to text and passing the result to
- * addDataToDom().
+ * Fetches json string from the server, converts to text, and adds it to the DOM.
  */
-function handleResponse(response) {
-    console.log('Handling the reponse');
+function getComments() {
+    console.log('Fetching json string');
+    fetch('/data').then(response => response.text()).then((comment) => {
+        document.getElementById('commentsContainer').innerText = comment;
+    });
 
-    const textPromise = response.text();
-
-    textPromise.then(addDataToDom);
 }
 
-/** Adds a hello statement to the DOM. */
-function addDataToDom(data) {
-    console.log('Adding data to DOM: ' + data);
-
-    const dataContainer = document.getElementById('dataContainer');
-    dataContainer.innerText = data;
-}
