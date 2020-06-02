@@ -12,14 +12,31 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-function addRandomGreeting() {
-  const greetings =
-      ['Hello world!', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!'];
+/**
+ * Fetches a hello statement from the server and adds it to the DOM.
+ */
+function getData() {
+    console.log('Fetching Hello [Your Name]');
+    const reponsePromise = fetch('data');
+    reponsePromise.then(handleResponse);
+}
 
-  // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
+/**
+ * Handles response by converting it to text and passing the result to
+ * addDataToDom().
+ */
+function handleResponse(response) {
+    console.log('Handling the reponse');
 
-  // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
+    const textPromise = response.text();
+
+    textPromise.then(addDataToDom);
+}
+
+/** Adds a hello statement to the DOM. */
+function addDataToDom(data) {
+    console.log('Adding data to DOM: ' + data);
+
+    const dataContainer = document.getElementById('dataContainer');
+    dataContainer.innerText = data;
 }
