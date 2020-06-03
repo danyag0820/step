@@ -12,12 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// function getRandomQuoteUsingArrowFunctions() {
-//   fetch('/random-quote').then(response => response.text()).then((quote) => {
-//     document.getElementById('quote-container').innerText = quote;
-//   });
-// }
-
 /**
  * Fetches json string from the server, converts to text, and adds it to the DOM.
  */
