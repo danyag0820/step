@@ -3,7 +3,7 @@
   margin-right: auto;
   width: 80%;
   /* text-align: center; */
-  background-color: #9c7c95;
+  background-color: #FEA693;
 
 }
 
@@ -17,10 +17,10 @@ img {
 }
 
 .photos {
-  /* Prevent vertical gaps */
 
   margin-left: auto;
   margin-right: auto;
+  padding-bottom:7%;
 }
 
 
@@ -43,17 +43,18 @@ img {
 .titleText {
   display: inline-block;
   margin-top: 15%;
-  font-size: 10em;
+  font-size: 7em;
   font-family: 'Nothing You Could Do', cursive;
   margin-left: auto;
   margin-right: auto;
-  color: #9c7c95
+  color: #FEA693;
 }
 
 .labels {
   display: inline-block;
   margin-top: 1%;
-  font-size: 8em;
+  margin-bottom:1.5%;
+  font-size: 6em;
   font-family: 'Nothing You Could Do', cursive;
   margin-left: auto;
   margin-right: auto;
@@ -64,11 +65,27 @@ img {
 .regText {
     color: white;
     font-family: 'Antic Slab', serif;
-    font-size: .3em;
+    font-size: .2em;
     text-align: center;
 }
 
 .favClassesImage {
     text-align: center;
     background-image: url("/images/natureImages/IMG-4901.JPG");
+}
+
+.linksImage {
+    text-align: center;
+    padding-bottom: 2%;
+}
+
+.galleryBackgroundImage {
+    text-align: center;
+    background-image: url("/images/natureImages/IMG-4880.JPG");
+}
+
+.photoLinks {
+    height: 20%;
+    width: 20%;
+    padding-bottom: 5%;
 }

@@ -13,16 +13,13 @@
 // limitations under the License.
 
 /**
- * Adds a random greeting to the page.
+ * Fetches json string from the server, converts to text, and adds it to the DOM.
  */
-function addRandomGreeting() {
-  const greetings =
-      ['Hello world!', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!'];
+function getComments() {
+    console.log('Fetching json string');
+    fetch('/data').then(response => response.text()).then((comment) => {
+        document.getElementById('commentsContainer').innerText = comment;
+    });
 
-  // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
-
-  // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
 }
+
