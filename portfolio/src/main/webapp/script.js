@@ -15,11 +15,12 @@
 /**
  * Fetches json string from the server, converts to text, and adds it to the DOM.
  */
-function getComments() {
-    console.log('Fetching json string');
-    fetch('/data').then(response => response.text()).then((comment) => {
-        document.getElementById('commentsContainer').innerText = comment;
-    });
+ function getMessages() {
+     console.log('Fetching json string');
 
-}
+     fetch('/messages').then(response => response.text()).then((message) => {
+         document.getElementById('messageContainer').innerText = message;
+     });
 
+
+ }

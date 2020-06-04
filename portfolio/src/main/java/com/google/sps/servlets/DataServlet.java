@@ -25,21 +25,50 @@ import javax.servlet.http.HttpServletResponse;
 
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
-@WebServlet("/data")
+@WebServlet("/messages")
 public class DataServlet extends HttpServlet {
 
-    private ArrayList<String> messages = new ArrayList<String>(
-        Arrays.asList("How are you?","Doing well,you?","Funny you should ask"));
+    private ArrayList<String> messages = new ArrayList<String>(Arrays.asList("hello"));
 
+    public String toJSON(ArrayList<String> messages) {
+        Gson gson = new Gson();
+        return gson.toJson(messages);
+    }
+  
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String json = toJSON(messages);
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    Gson gson = new Gson();
-    String json = gson.toJson(messages);
-    
-    response.setContentType("text/html;");
-    response.getWriter().println(json);
+        response.setContentType("application/json;");
+        response.getWriter().println(json);
   }
 
-  public void doPost()
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String name = getParameter(request,"name","");
+        String email = getParameter(request,"email","");
+        String text = getParameter(request,"message","");
+
+        messages.add(name);
+        messages.add(email);
+        messages.add(text);
+
+        // Respond with the result.
+        response.setContentType("text/html;");
+        response.getWriter().println(toJSON(messages));
+
+}
+
+  /**
+   * @return the request parameter, or the default value if the parameter
+   *         was not specified by the client
+   */
+  private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+    String value = request.getParameter(name);
+    if (value == null) {
+      return defaultValue;
+    }
+    return value;
+  }
+
 }

@@ -61,11 +61,22 @@
                 <img src = '/images/natureImages/IMG-7621.JPG' alt = 'snowfall on fenway'>
                 <img src = '/images/natureImages/IMG-9385.jpg' alt = 'cow enclosure at sunset'>
         </div>
-        </div>
-        <div>
-            <button onclick = 'getComments()'>Get Data</button>
-            <div id = 'commentsContainer'></div>
-        </div>
+        </div action = "/messages" method = "POST">
+        <form >
+            <label for = 'name'>Name:</label><br>
+            <input type = 'text' id = 'name' required = 'True'><br>
+            <label for = 'email'>Email:</label><br>
+            <input type = 'text' id = 'email' required = 'True'><br>
+            <label for = "message">Message:</label><br>
+            <input type = 'text' id = "message" required = 'True'><br>
+
+            <input type = 'submit'/>
+
+        </form>
+            <button onclick = 'getMessages()'> Click to see comments </button>            
+
+            <div id = 'messageContainer'></div>
+
     </div>
   </body>
 </html>
