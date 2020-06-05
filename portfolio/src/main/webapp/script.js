@@ -15,11 +15,45 @@
 /**
  * Fetches json string from the server, converts to text, and adds it to the DOM.
  */
-function getComments() {
-    console.log('Fetching json string');
-    fetch('/data').then(response => response.text()).then((comment) => {
-        document.getElementById('commentsContainer').innerText = comment;
-    });
+ function getMessages() {
+     console.log('Fetching json string');
+
+     fetch('/messages').then(response => response.text()).then((message) => {
+         document.getElementById('messageContainer').innerText = message;
+     });
+ }
+
+/**
+ * Creates a message board and formats individual messages
+ */
+function createMessageElt(message) {
+    messageElt = document.createElement('ul');
+    var curr = 0;
+
+    for (i = 0; i < message.length/3; i++) {
+        var singleMessage = document.createElement('li');
+        
+        var name = message[curr+2];
+        var email = message[curr+1];
+        var text = message[curr];
+        curr += 3
+
+        var messageContent = document.createTextNode(name + "(" + email + '): ' + text);
+        singleMessage.appendChild(messageContent);
+        messageElt.appendChild(singleMessage);
+    };
+
+    return messageElt;
+}
+
+/**
+ * Fetches messages from the server and adds them to the message board
+ */
+function addMessages() {
+    fetch('/messages').then(response => response.json()).then((message) => {
+        var messageBoard = createMessageElt(message);
+        document.getElementById('messageContainer').appendChild(messageBoard);      
+     });
 
 }
 

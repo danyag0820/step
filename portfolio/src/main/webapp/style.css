@@ -51,7 +51,6 @@ img {
 }
 
 .labels {
-  display: inline-block;
   margin-top: 1%;
   margin-bottom:1.5%;
   font-size: 6em;
@@ -87,5 +86,14 @@ img {
 .photoLinks {
     height: 20%;
     width: 20%;
+    padding-bottom: 5%;
+}
+
+
+.formText {
+    font-size: 1.5em;
+}
+
+.messageSection {
     padding-bottom: 5%;
 }
