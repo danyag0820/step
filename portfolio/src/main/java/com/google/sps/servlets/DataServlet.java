@@ -14,6 +14,9 @@
 
 package com.google.sps.servlets;
 
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,7 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-/** Servlet that returns a message from the user's form submission */
+/** Servlet that returns a message from the user's form submissiongit co */
 @WebServlet("/messages")
 public class DataServlet extends HttpServlet {
 
@@ -52,6 +55,14 @@ public class DataServlet extends HttpServlet {
         messages.add(0,name);
         messages.add(0,email);
         messages.add(0,text);
+
+        Entity messageEntity = new Entity("Message");
+        messageEntity.setProperty("name",name);
+        messageEntity.setProperty("email",email);
+        messageEntity.setProperty("text",text);
+
+        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+        datastore.put(messageEntity);
 
         response.setContentType("text/html;");
         response.sendRedirect("/index.html#messageBoard");
