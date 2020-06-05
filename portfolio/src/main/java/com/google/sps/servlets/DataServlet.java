@@ -28,8 +28,9 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/messages")
 public class DataServlet extends HttpServlet {
 
-    private ArrayList<String> messages = new ArrayList<String>(Arrays.asList("hello"));
+    private ArrayList<String> messages = new ArrayList<String>();
 
+    /**Method takes an ArrayList<String> and converts to JSON using gson*/
     public String toJSON(ArrayList<String> messages) {
         Gson gson = new Gson();
         return gson.toJson(messages);
@@ -45,18 +46,19 @@ public class DataServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String name = getParameter(request,"name","");
+        String name = request.getParameter("name");
         String email = getParameter(request,"email","");
         String text = getParameter(request,"message","");
 
-        messages.add(name);
-        messages.add(email);
-        messages.add(text);
+        messages.add(0,name);
+        messages.add(0,email);
+        messages.add(0,text);
 
         // Respond with the result.
         response.setContentType("text/html;");
         response.getWriter().println(toJSON(messages));
 
+        response.sendRedirect("/index.html#messageBoard");
 }
 
   /**
