@@ -24,14 +24,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
+/** Servlet that returns a message from the user's form submission */
 @WebServlet("/messages")
 public class DataServlet extends HttpServlet {
 
     private ArrayList<String> messages = new ArrayList<String>();
 
-    /**Method takes an ArrayList<String> and converts to JSON using gson*/
-    public String toJSON(ArrayList<String> messages) {
+    private static String toJSON(ArrayList<String> messages) {
         Gson gson = new Gson();
         return gson.toJson(messages);
     }
@@ -54,10 +53,7 @@ public class DataServlet extends HttpServlet {
         messages.add(0,email);
         messages.add(0,text);
 
-        // Respond with the result.
         response.setContentType("text/html;");
-        response.getWriter().println(toJSON(messages));
-
         response.sendRedirect("/index.html#messageBoard");
 }
 
