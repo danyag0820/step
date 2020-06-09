@@ -27,22 +27,14 @@
  * Creates a message board and formats individual messages
  */
 function createMessageElt(message) {
-    messageElt = document.createElement('ul');
-    var curr = 0;
-
-    for (i = 0; i < message.length/3; i++) {
+    var messageElt = document.createElement('ul');
+    for (i = 0; i < message.length; i++) {
         var singleMessage = document.createElement('li');
-        
-        var name = message[curr+2];
-        var email = message[curr+1];
-        var text = message[curr];
-        curr += 3
-
-        var messageContent = document.createTextNode(name + "(" + email + '): ' + text);
+        var messageContent = document.createTextNode(message[i].name + "(" + 
+            message[i].email + "): " + message[i].text);
         singleMessage.appendChild(messageContent);
         messageElt.appendChild(singleMessage);
-    };
-
+    }
     return messageElt;
 }
 
@@ -50,8 +42,8 @@ function createMessageElt(message) {
  * Fetches messages from the server and adds them to the message board
  */
 function addMessages() {
-    fetch('/messages').then(response => response.json()).then((message) => {
-        var messageBoard = createMessageElt(message);
+    fetch('/messages').then(response => response.json()).then((messageList) => {
+        var messageBoard = createMessageElt(messageList);
         document.getElementById('messageContainer').appendChild(messageBoard);      
      });
 

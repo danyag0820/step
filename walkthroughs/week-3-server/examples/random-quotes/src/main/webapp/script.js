@@ -41,7 +41,7 @@ function handleResponse(response) {
   textPromise.then(addQuoteToDom);
 }
 
-/** Adds a random quote to the DOM. */
+
 function addQuoteToDom(quote) {
   console.log('Adding quote to dom: ' + quote);
 
