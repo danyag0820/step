@@ -57,7 +57,7 @@ public class DataServlet extends HttpServlet {
             String email = (String)entity.getProperty("email");
             String text = (String)entity.getProperty("text");
 
-            Message message = new Message(id,name,email,text);
+            Message message = Message.create(id,name,email,text);
             messageList.add(message);
         }
         

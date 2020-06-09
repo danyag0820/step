@@ -97,3 +97,9 @@ img {
 .messageSection {
     padding-bottom: 5%;
 }
+
+#map {
+  border: thin solid black;
+  height: 500px;
+  width: 500px;
+}

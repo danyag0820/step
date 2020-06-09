@@ -1,17 +1,19 @@
 package com.google.sps.data;
 
+import com.google.auto.value.AutoValue;
+
 /** A message on a message board. */
-public final class Message {
+@AutoValue
+public abstract class Message {
+    public static Message create(long id,String name, String email, String text) {
+        return new AutoValue_Message(id,name,email,text);
+    }
 
-    private final long id;
-    private final String name;
-    private final String email;
-    private final String text;
-
-  public Message(long id,String name, String email, String text) {
-    this.id = id;
-    this.name = name;
-    this.email = email;
-    this.text = text;
-  }
+    abstract long id();
+    abstract String name();
+    abstract String email();
+    abstract String text();
 }
+
+
+
