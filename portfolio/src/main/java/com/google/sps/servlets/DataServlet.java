@@ -17,31 +17,51 @@ package com.google.sps.servlets;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.gson.Gson;
+import com.google.sps.data.Message;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-/** Servlet that returns a message from the user's form submissiongit co */
+/** Servlet that returns a message from the user's form submission*/
 @WebServlet("/messages")
 public class DataServlet extends HttpServlet {
 
-    private ArrayList<String> messages = new ArrayList<String>();
+    private ArrayList<Message> messages = new ArrayList<>();
 
-    private static String toJSON(ArrayList<String> messages) {
+    private static String toJSON(ArrayList<Message> messages) {
         Gson gson = new Gson();
         return gson.toJson(messages);
     }
   
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String json = toJSON(messages);
+        Query query = new Query("Message");
 
+        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+        PreparedQuery results = datastore.prepare(query);
+
+        ArrayList<Message> messageList = new ArrayList<>();
+        for (Entity entity : results.asIterable()) {
+            long id = entity.getKey().getId();
+            String name = (String)entity.getProperty("name");
+            String email = (String)entity.getProperty("email");
+            String text = (String)entity.getProperty("text");
+
+            Message message = new Message(id,name,email,text);
+            messageList.add(message);
+        }
+        
+        String json = toJSON(messageList);
         response.setContentType("application/json;");
         response.getWriter().println(json);
   }
@@ -51,10 +71,6 @@ public class DataServlet extends HttpServlet {
         String name = request.getParameter("name");
         String email = getParameter(request,"email","");
         String text = getParameter(request,"message","");
-
-        messages.add(0,name);
-        messages.add(0,email);
-        messages.add(0,text);
 
         Entity messageEntity = new Entity("Message");
         messageEntity.setProperty("name",name);
