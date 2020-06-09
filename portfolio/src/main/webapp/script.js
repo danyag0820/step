@@ -24,18 +24,19 @@
  }
 
 /**
- * Creates a message board and formats individual messages
+ * Takes an ArrayList of messages and returns an message list element
+ * with formatted individual messages
  */
-function createMessageElt(message) {
-    var messageElt = document.createElement('ul');
-    for (i = 0; i < message.length; i++) {
+function createMessageListElt(messageList) {
+    var messageListElt = document.createElement('ul');
+    for (i = 0; i < messageList.length; i++) {
         var singleMessage = document.createElement('li');
-        var messageContent = document.createTextNode(message[i].name + "(" + 
-            message[i].email + "): " + message[i].text);
+        var messageContent = document.createTextNode(messageList[i].name + "(" + 
+            messageList[i].email + "): " + messageList[i].text);
         singleMessage.appendChild(messageContent);
-        messageElt.appendChild(singleMessage);
+        messageListElt.appendChild(singleMessage);
     }
-    return messageElt;
+    return messageListElt;
 }
 
 /**
@@ -43,7 +44,7 @@ function createMessageElt(message) {
  */
 function addMessages() {
     fetch('/messages').then(response => response.json()).then((messageList) => {
-        var messageBoard = createMessageElt(messageList);
+        var messageBoard = createMessageListElt(messageList);
         document.getElementById('messageContainer').appendChild(messageBoard);      
      });
 
