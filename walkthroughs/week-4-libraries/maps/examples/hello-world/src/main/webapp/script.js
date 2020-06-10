@@ -14,45 +14,34 @@
 
 /** Creates a map and adds it to the page. */
 function createMap() {
-    const map = new google.maps.Map(
-      document.getElementById('map'),
-      {center: {lat: 37.422, lng: -122.084}, zoom: 16});
-    map.setCenter({lat: 40.241335, lng: -99.204881}); 
-    map.setZoom(4);
+    var heatMapData = [
+  {location: new google.maps.LatLng(37.782, -122.447), weight: 0.5},
+  new google.maps.LatLng(37.782, -122.445),
+  {location: new google.maps.LatLng(37.782, -122.443), weight: 2},
+  {location: new google.maps.LatLng(37.782, -122.441), weight: 3},
+  {location: new google.maps.LatLng(37.782, -122.439), weight: 2},
+  new google.maps.LatLng(37.782, -122.437),
+  {location: new google.maps.LatLng(37.782, -122.435), weight: 0.5},
 
-    const grandCanyon = new google.maps.Marker({
-    position: {lat: 36.103727, lng: -112.107690},
-    map: map,
-    title: 'Clue 1'
-    });
+  {location: new google.maps.LatLng(37.785, -122.447), weight: 3},
+  {location: new google.maps.LatLng(37.785, -122.445), weight: 2},
+  new google.maps.LatLng(37.785, -122.443),
+  {location: new google.maps.LatLng(37.785, -122.441), weight: 0.5},
+  new google.maps.LatLng(37.785, -122.439),
+  {location: new google.maps.LatLng(37.785, -122.437), weight: 2},
+  {location: new google.maps.LatLng(37.785, -122.435), weight: 3}
+];
 
-    const orlandoAirport = new google.maps.Marker({
-    position: {lat: 28.431117, lng: -81.307999},
-    map: map,
-    title: 'Clue 2'
-    });
+var sanFrancisco = new google.maps.LatLng(37.774546, -122.433523);
 
-    const odeToJoyFarm = new google.maps.Marker({
-    position: {lat: 47.186577, lng: -122.031466},
-    map: map,
-    title: 'Clue 3'
-    });
+map = new google.maps.Map(document.getElementById('map'), {
+  center: sanFrancisco,
+  zoom: 13,
+  mapTypeId: 'satellite'
+});
 
-    const goldenGate = new google.maps.Marker({
-    position: {lat: 37.819787, lng: -122.478486},
-    map: map,
-    title: 'Clue 4'
-    });
-
-    const lakeMichigan = new google.maps.Marker({
-    position: {lat: 43.890377, lng: -87.004874},
-    map: map,
-    title: 'Clue 5'
-    });
-
-    const eastRiver = new google.maps.Marker({
-    position: {lat: 40.786958, lng: -73.917803},
-    map: map,
-    title: 'Clue 6'
-    });
+var heatmap = new google.maps.visualization.HeatmapLayer({
+  data: heatMapData
+});
+heatmap.setMap(map);
 }
