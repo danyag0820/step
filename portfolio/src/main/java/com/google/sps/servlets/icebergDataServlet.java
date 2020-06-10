@@ -2,6 +2,7 @@ package com.google.sps.servlets;
 
 import com.google.gson.Gson;
 import com.google.sps.data.Iceberg;
+import java.util.InputMismatchException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -21,19 +22,21 @@ public class icebergDataServlet extends HttpServlet {
   public void init() {
     icebergSightings = new ArrayList<>();
 
-    Scanner scanner = new Scanner(getServletContext().getResourceAsStream("/WEB-INF/icebergSightings.csv"));
+   try (Scanner scanner = new Scanner(getServletContext().getResourceAsStream("/WEB-INF/icebergSightings.csv"))) {
     while (scanner.hasNextLine()) {
-      String line = scanner.nextLine();
-      String[] cells = line.split(",");
+        String line = scanner.nextLine();
+        String[] cells = line.split(",");
 
-      double lat = Double.parseDouble(cells[0]);
-      double lng = Double.parseDouble(cells[1]);
-      String size = cells[2];
+        double lat = Double.parseDouble(cells[0]);
+        double lng = Double.parseDouble(cells[1]);
+        String size = cells[2];
 
-      Iceberg iceberg = Iceberg.create(lat,lng,size);
-      icebergSightings.add(iceberg);
+        Iceberg iceberg = Iceberg.create(lat,lng,size);
+        icebergSightings.add(iceberg);
+        }
+    } catch (InputMismatchException e) {
+        e.printStackTrace();
     }
-    scanner.close();
   }
 
   @Override
