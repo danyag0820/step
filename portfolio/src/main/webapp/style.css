@@ -16,8 +16,7 @@ img {
     width: 20%;
 }
 
-.photos {
-
+.centered {
   margin-left: auto;
   margin-right: auto;
   padding-bottom:7%;
@@ -98,8 +97,13 @@ img {
     padding-bottom: 5%;
 }
 
-#map {
+.map {
   border: thin solid black;
   height: 500px;
   width: 500px;
+  padding: 2%;
+}
+
+.mapSection {
+    padding: 5%;
 }

@@ -8,7 +8,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3FFizSRZEXTfLjby8ig1aKy7QoI7x9pQ"></script>
     <script src="script.js"></script>
   </head>
-  <body onload = 'addMessages(); createMap();'>
+  <body onload = 'addMessages(); createGameMap(); createIcebergSightingsMap();'>
     <div id="content">
       <div class = 'parallax titleImage'> <h1 class = 'titleText'>Danya Gao</h1>
       </div>
@@ -38,7 +38,7 @@
     
         <div class = 'parallax galleryBackgroundImage' >
         <p class = 'labels'>Some photos </p>
-        <div class="photos">
+        <div class="centered">
                 <img src = '/images/friendImages/IMG-0490.JPG' alt = 'with a friend on a boat at Wellesley'>
                 <img src = '/images/natureImages/IMG-0516.JPG' alt = 'pink pond at Wellesley'>
                 <img src = '/images/natureImages/IMG-3893.JPG' alt = 'sunset at Charles River in Boston'>
@@ -58,7 +58,16 @@
         </div>
         </div>
 
-        <div id="map"></div>
+        <div class = 'parallax mapSection'>
+        <p class = 'regText formText'>Map game! There is a hidden word spelled out by the markers on the map, be the first
+            to comment the word down below and receive a valuable prize in the form of a cat image I found on 
+            the internet! (hint: mouse over the markers to find the order of the clues, then zoom in to each marker)
+        </p>
+        <div id="gameMap" class = 'centered map'></div>
+        <p class = 'regText formText'>Iceberg sightings in the North Atlantic in 2019, with iceberg size.
+        </p>
+        <div id="icebergMap" class = 'centered map'></div>
+        </div>
         
         <div class = 'parallax messageSection'>
             <p class = 'labels'>Message Board</p>

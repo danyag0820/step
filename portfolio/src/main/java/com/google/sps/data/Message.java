@@ -14,6 +14,3 @@ public abstract class Message {
     abstract String email();
     abstract String text();
 }
-
-
-
