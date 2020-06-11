@@ -95,7 +95,6 @@ function createIcebergSightingsMap() {
     const icebergMap = new google.maps.Map(
         document.getElementById('icebergMap'),
         {center: {lat: 54.0783, lng: -55.1583}, zoom: 5});
-    console.log(icebergSightings);
     icebergSightings.forEach((iceberg) => {
         var marker = new google.maps.Marker(
             {position: {lat: iceberg.lat, lng: iceberg.lng}, 
