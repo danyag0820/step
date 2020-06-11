@@ -94,8 +94,7 @@ function createIcebergSightingsMap() {
   fetch('/iceberg-data').then(response => response.json()).then((icebergSightings) => {
     const icebergMap = new google.maps.Map(
         document.getElementById('icebergMap'),
-        {center: {lat: 54.0783, lng: -55.1583}, zoom: 5});
-
+        {center: {lat: 54.0783, lng: -55.1583}, zoom: 4});
     icebergSightings.forEach((iceberg) => {
         var marker = new google.maps.Marker(
             {position: {lat: iceberg.lat, lng: iceberg.lng}, 
@@ -114,3 +113,18 @@ function createIcebergSightingsMap() {
     });
   });
 }
+
+/* loads images asynchronously*/
+function loadImages() {
+    var images = ['/images/friendImages/IMG-0490.JPG','/images/natureImages/IMG-0516.JPG','/images/natureImages/IMG-3893.JPG',
+    '/images/friendImages/snowman.JPG','/images/natureImages/IMG-4799.JPG','/images/friendImages/IMG-2559.JPG','/images/natureImages/IMG-4901.JPG',
+    '/images/natureImages/IMG-5025.JPG','/images/friendImages/IMG-7364.JPG','/images/natureImages/IMG-6283.JPG',
+    '/images/friendImages/IMG-8269.jpg','/images/natureImages/IMG-7379.JPG','/images/natureImages/IMG-7383.JPG',
+    '/images/friendImages/IMG-1539.JPG','/images/natureImages/IMG-7621.JPG','/images/natureImages/IMG-9385.jpg']
+    for(i = 0; i < images.length; i++) {
+        var img = new Image();
+        img.onload = document.getElementById('photos').appendChild(img);
+        img.src = images[i];
+    }
+}
+

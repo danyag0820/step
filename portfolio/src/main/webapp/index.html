@@ -8,7 +8,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3FFizSRZEXTfLjby8ig1aKy7QoI7x9pQ"></script>
     <script src="script.js"></script>
   </head>
-  <body onload = 'addMessages(); createGameMap(); createIcebergSightingsMap();'>
+  <body onload = 'addMessages(); createGameMap(); createIcebergSightingsMap(); loadImages();'>
     <div id="content">
       <div class = 'parallax titleImage'> <h1 class = 'titleText'>Danya Gao</h1>
       </div>
@@ -38,37 +38,29 @@
     
         <div class = 'parallax galleryBackgroundImage' >
         <p class = 'labels'>Some photos </p>
-        <div class="centered">
-                <img src = '/images/friendImages/IMG-0490.JPG' alt = 'with a friend on a boat at Wellesley'>
-                <img src = '/images/natureImages/IMG-0516.JPG' alt = 'pink pond at Wellesley'>
-                <img src = '/images/natureImages/IMG-3893.JPG' alt = 'sunset at Charles River in Boston'>
-                <img src = '/images/friendImages/snowman.JPG' alt = 'with a snowman we made'>
-                <img src = '/images/natureImages/IMG-4799.JPG' alt = 'sunset over forest'>
-                <img src = '/images/friendImages/IMG-2559.JPG' alt = 'signs at marathon monday'>
-                <img src = '/images/natureImages/IMG-4901.JPG' alt = 'mountain reflection on lake'>
-                <img src = '/images/natureImages/IMG-5025.JPG' alt = 'weeds at sunset'>
-                <img src = '/images/friendImages/IMG-7364.JPG' alt = 'in a grass field'>
-                <img src = '/images/natureImages/IMG-6283.JPG' alt = 'fall foliage at Wellesley'>
-                <img src = '/images/friendImages/IMG-8269.jpg' alt = 'taken while ice skating'>
-                <img src = '/images/natureImages/IMG-7379.JPG' alt = 'snowfall on a picnic table'>
-                <img src = '/images/natureImages/IMG-7383.JPG' alt = 'snowfall on munger meadow'>
-                <img src = '/images/friendImages/IMG-1539.JPG' alt = 'with two friends at a cream puff place'>
-                <img src = '/images/natureImages/IMG-7621.JPG' alt = 'snowfall on fenway'>
-                <img src = '/images/natureImages/IMG-9385.jpg' alt = 'cow enclosure at sunset'>
+        <div id = 'photos' class="centered">
         </div>
         </div>
 
+        <div class = 'labels'>Maps 
         <div class = 'parallax mapSection'>
-        <p class = 'regText formText'>Map game! There is a hidden word spelled out by the markers on the map, be the first
+
+        <div class = 'mapGameSection'>
+        <p id = 'mapGameText' class = 'regText'>Map game! There is a hidden word spelled out by the markers on the map, be the first
             to comment the word down below and receive a valuable prize in the form of a cat image I found on 
-            the internet! (hint: mouse over the markers to find the order of the clues, then zoom in to each marker)
-        </p>
+            the internet! (hint: mouse over the markers to find the order of the clues, then zoom in to each marker) </p>
         <div id="gameMap" class = 'centered map'></div>
-        <p class = 'regText formText'>Iceberg sightings in the North Atlantic in 2019, with iceberg size.
+        </div>
+
+        <div class = 'icebergSection'>
+        <p id = 'icebergMapText' class = 'regText'>Iceberg sightings in the North Atlantic in 2019, click for iceberg size.
         </p>
         <div id="icebergMap" class = 'centered map'></div>
         </div>
-        
+
+        </div>
+        </div>
+
         <div class = 'parallax messageSection'>
             <p class = 'labels'>Message Board</p>
             <form id = 'messageBoard' action = "/messages" method = "POST" class = 'regText formText'> 

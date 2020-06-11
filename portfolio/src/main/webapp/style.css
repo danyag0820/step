@@ -14,6 +14,7 @@
 img {
     height: 20%;
     width: 20%;
+    margin-right: 4px;
 }
 
 .centered {
@@ -70,6 +71,7 @@ img {
 .favClassesImage {
     text-align: center;
     background-image: url("/images/natureImages/IMG-4901.JPG");
+    padding-bottom: 1em;
 }
 
 .linksImage {
@@ -99,11 +101,40 @@ img {
 
 .map {
   border: thin solid black;
-  height: 500px;
-  width: 500px;
+  height: 70%;
+  width: 35%;
   padding: 2%;
 }
 
 .mapSection {
     padding: 5%;
+}
+
+#mapGameText {
+    font-size: .3em;
+    float:left;
+    width:60%;
+}
+
+#gameMap {
+    float:right
+}
+
+#icebergMapText {
+    font-size: .3em;
+    float:right;
+    width:60%;
+    padding-top: 3em;
+}
+
+#icebergMap {
+    float:left;
+}
+
+.mapGameSection {
+    height: 3em;
+}
+
+.icebergSection {
+    height: 4em;
 }
