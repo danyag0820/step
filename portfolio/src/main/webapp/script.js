@@ -143,9 +143,7 @@ function createIcebergSizeChart() {
     });
    
     var sizesArray = Object.entries(sizes);
-    console.log(sizesArray);
     const sizesData = google.visualization.arrayToDataTable(sizesArray);
-    console.log(sizesData);
 
     var options = {
         title: 'Iceberg Size Distribution',
