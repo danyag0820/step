@@ -6,9 +6,10 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Antic+Slab&family=Nothing+You+Could+Do&display=swap" rel="stylesheet">
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3FFizSRZEXTfLjby8ig1aKy7QoI7x9pQ"></script>
+     <script src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="script.js"></script>
   </head>
-  <body onload = 'addMessages(); createGameMap(); createIcebergSightingsMap(); loadImages();'>
+  <body onload = 'addMessages(); createGameMap(); createIcebergSightingsMap(); loadImages(); loadIcebergChart();'>
     <div id="content">
       <div class = 'parallax titleImage'> <h1 class = 'titleText'>Danya Gao</h1>
       </div>
@@ -54,11 +55,17 @@
 
         <div class = 'icebergSection'>
         <p id = 'icebergMapText' class = 'regText'>Iceberg sightings in the North Atlantic in 2019, click for iceberg size.
+            Fun (or not so fun) fact! The International Ice Patrol, who creates and updates this iceberg
+            database, was created after the Titantic sunk in 2012!
         </p>
         <div id="icebergMap" class = 'centered map'></div>
         </div>
 
         </div>
+        </div>
+
+        <div class = 'parallax pieSection labels '> Charting Icebergs
+            <div id = 'pieChart' class = 'centered'> </div>
         </div>
 
         <div class = 'parallax messageSection'>
