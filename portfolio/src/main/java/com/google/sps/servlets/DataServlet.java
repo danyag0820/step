@@ -60,7 +60,6 @@ public class DataServlet extends HttpServlet {
             Message message = Message.create(id,name,email,text);
             messageList.add(message);
         }
-        
         String json = toJSON(messageList);
         response.setContentType("application/json;");
         response.getWriter().println(json);

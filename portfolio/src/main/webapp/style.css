@@ -141,6 +141,7 @@ img {
 
 #pieChart{
     display: inline-block;
+    padding: .5em;
 }
 
 .pieSection {

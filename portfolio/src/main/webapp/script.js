@@ -148,10 +148,8 @@ function createIcebergSizeChart() {
     var options = {
         title: 'Iceberg Size Distribution',
         pieSliceText:'label',
-        slices:{2: {offset: 0.2},
-                3: {offset: 0.3},
-                4: {offset: 0.4},
-                5: {offset: 0.5},
+        slices:{2: {offset: 0.15},
+                3: {offset: 0.1},
                 },
         width: 600,
         height: 400,
