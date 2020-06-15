@@ -31,57 +31,55 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 /** Servlet that returns a message from the user's form submission*/
 @WebServlet("/messages")
 public class DataServlet extends HttpServlet {
+  private ArrayList<Message> messages = new ArrayList<>();
 
-    private ArrayList<Message> messages = new ArrayList<>();
-
-    private static String toJSON(ArrayList<Message> messages) {
-        Gson gson = new Gson();
-        return gson.toJson(messages);
-    }
-  
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        Query query = new Query("Message");
-
-        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-        PreparedQuery results = datastore.prepare(query);
-
-        ArrayList<Message> messageList = new ArrayList<>();
-        for (Entity entity : results.asIterable()) {
-            long id = entity.getKey().getId();
-            String name = (String)entity.getProperty("name");
-            String email = (String)entity.getProperty("email");
-            String text = (String)entity.getProperty("text");
-
-            Message message = Message.create(id,name,email,text);
-            messageList.add(message);
-        }
-        String json = toJSON(messageList);
-        response.setContentType("application/json;");
-        response.getWriter().println(json);
+  private static String toJSON(ArrayList<Message> messages) {
+    Gson gson = new Gson();
+    return gson.toJson(messages);
   }
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String name = request.getParameter("name");
-        String email = getParameter(request,"email","");
-        String text = getParameter(request,"message","");
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    Query query = new Query("Message");
 
-        Entity messageEntity = new Entity("Message");
-        messageEntity.setProperty("name",name);
-        messageEntity.setProperty("email",email);
-        messageEntity.setProperty("text",text);
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    PreparedQuery results = datastore.prepare(query);
 
-        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-        datastore.put(messageEntity);
+    ArrayList<Message> messageList = new ArrayList<>();
+    for (Entity entity : results.asIterable()) {
+      long id = entity.getKey().getId();
+      String name = (String) entity.getProperty("name");
+      String email = (String) entity.getProperty("email");
+      String text = (String) entity.getProperty("text");
 
-        response.setContentType("text/html;");
-        response.sendRedirect("/index.html#messageBoard");
-}
+      Message message = Message.create(id, name, email, text);
+      messageList.add(message);
+    }
+    String json = toJSON(messageList);
+    response.setContentType("application/json;");
+    response.getWriter().println(json);
+  }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    String name = request.getParameter("name");
+    String email = getParameter(request, "email", "");
+    String text = getParameter(request, "message", "");
+
+    Entity messageEntity = new Entity("Message");
+    messageEntity.setProperty("name", name);
+    messageEntity.setProperty("email", email);
+    messageEntity.setProperty("text", text);
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    datastore.put(messageEntity);
+
+    response.setContentType("text/html;");
+    response.sendRedirect("/index.html#messageBoard");
+  }
 
   /**
    * @return the request parameter, or the default value if the parameter
@@ -94,5 +92,4 @@ public class DataServlet extends HttpServlet {
     }
     return value;
   }
-
 }
