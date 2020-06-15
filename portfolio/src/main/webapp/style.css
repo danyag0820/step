@@ -138,3 +138,13 @@ img {
 .icebergSection {
     height: 4em;
 }
+
+#pieChart{
+    display: inline-block;
+    padding: .5em;
+}
+
+.pieSection {
+    background-image: url("/images/natureImages/IMG-2227.jpg");
+    text-align:center;
+}

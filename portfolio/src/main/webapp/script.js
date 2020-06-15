@@ -128,3 +128,34 @@ function loadImages() {
     }
 }
 
+/* Loads iceberg size chart onto page */
+function loadIcebergChart() {
+    google.charts.load("current", {packages:["corechart"]});
+    google.charts.setOnLoadCallback(createIcebergSizeChart);
+}
+
+/** Fetches iceberg sightings data from the server and displays size distribution in a chart */
+function createIcebergSizeChart() {
+  fetch('/iceberg-data').then(response => response.json()).then((icebergSightings) => {
+    var sizes = {'Sizes':'Count','GR':0,'BB':0,'SM':0,'MED':0,'LG':0,'VLG':0,'RAD':0,'GEN':0};
+    icebergSightings.forEach((iceberg) => {
+       sizes[iceberg.size] += 1;  
+    });
+   
+    var sizesArray = Object.entries(sizes);
+    const sizesData = google.visualization.arrayToDataTable(sizesArray);
+
+    var options = {
+        title: 'Iceberg Size Distribution',
+        pieSliceText:'label',
+        slices:{2: {offset: 0.15},
+                3: {offset: 0.1},
+                },
+        width: 600,
+        height: 400,
+        };
+    
+    var chart = new google.visualization.PieChart(document.getElementById('pieChart'));
+    chart.draw(sizesData, options);
+    });
+}

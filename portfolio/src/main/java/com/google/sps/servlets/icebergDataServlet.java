@@ -1,6 +1,7 @@
 package com.google.sps.servlets;
 
 import com.google.common.collect.ImmutableList; 
+import com.google.common.collect.ImmutableList.Builder;
 import com.google.gson.Gson;
 import com.google.sps.data.Iceberg;
 import java.util.InputMismatchException;
@@ -19,12 +20,13 @@ import javax.servlet.ServletException;
 @WebServlet("/iceberg-data")
 public class icebergDataServlet extends HttpServlet {
 
-  private Collection<Iceberg> icebergSightingsArray;
   private Collection<Iceberg> icebergSightings;
+
 
   @Override
   public void init() throws ServletException {
-    icebergSightingsArray = new ArrayList<>();
+
+    ImmutableList.Builder<Iceberg> icebergSightings = ImmutableList.builder();
 
    try (Scanner scanner = new Scanner(getServletContext().getResourceAsStream("/WEB-INF/icebergSightings.csv"))) {
         while (scanner.hasNextLine()) {
@@ -36,9 +38,9 @@ public class icebergDataServlet extends HttpServlet {
             String size = cells[2];
 
             Iceberg iceberg = Iceberg.create(lat,lng,size);
-            icebergSightingsArray.add(iceberg);
+            icebergSightings.add(iceberg);
             }
-        icebergSightings = ImmutableList.copyOf(icebergSightingsArray); 
+        this.icebergSightings = icebergSightings.build(); 
     } catch (Exception e) {
         throw new ServletException("Error reading input file", e);
     }
