@@ -58,7 +58,7 @@ public final class FindMeetingQuery {
       }
     }
 
-    if (!(optionsIncludingOptional.isEmpty()) || MANDATORYPEOPLE.isEmpty()) {
+    if (!(optionsIncludingOptional.isEmpty()) || MANDATORY_PEOPLE.isEmpty()) {
       Collections.sort(optionsIncludingOptional, TimeRange.ORDER_BY_START);
 
       return optionsIncludingOptional;
