@@ -53,12 +53,16 @@ public final class FindMeetingQuery {
     for (Event event : events) {
       for (String attendee : event.getAttendees()) {
         if (OPTIONAL_PEOPLE.contains(attendee)) {
+            // System.out.println("current attendee: " + attendee);
+            System.out.println("optionsIncludingOptional: " + optionsIncludingOptional);
+
           optionsIncludingOptional =
               updateAvailableTimes(optionsIncludingOptional, event.getWhen(), MEETING_DURATION);
+              System.out.println("optionsIncludingOptional after update: " + optionsIncludingOptional);
         }
       }
     }
-
+   
     if (optionsIncludingOptional.size() > 0 || MANDATORY_PEOPLE.size() == 0) {
       Collections.sort(optionsIncludingOptional, TimeRange.ORDER_BY_START);
 
@@ -76,12 +80,15 @@ public final class FindMeetingQuery {
    * @param meetingDuration: The length of the meeting request
    * @return A list of updated TimeRanges when a meeting can be scheduled
    */
-  public List<TimeRange> updateAvailableTimes(
-      List<TimeRange> currentTimes, TimeRange unavailableTime, long meetingDuration) {
+  public List<TimeRange> updateAvailableTimes(List<TimeRange> currentTimes, TimeRange unavailableTime, long meetingDuration) {
     List<TimeRange> proxyCurrentTimes = new ArrayList<TimeRange>();
+    System.out.println("currentTimes beginning of update: " + currentTimes.size());
 
     for (TimeRange time : currentTimes) {
+        System.out.println("STARTED FOR LOOP");
+        System.out.println(currentTimes);
       if (time.overlaps(unavailableTime)) {
+          System.out.println("THE TIME HAS OVERLAPPED: " + time);
         if (time.equals(unavailableTime) || unavailableTime.contains(time)) {
           break; // don't include this time in our new currentTimes proxy
         } else if (time.contains(unavailableTime)) {
@@ -124,11 +131,16 @@ public final class FindMeetingQuery {
           }
         }
       } else {
+          System.out.println("AT ELSE STATEMENT, CURRENT TIME: " + time);
         if (time.duration() >= meetingDuration) {
           proxyCurrentTimes.add(time);
+          System.out.println("TIME ADDED TO PROXY, DURATION: " + time.duration());
         }
       }
+      System.out.println("Current state of proxyCurrentTimes: " + proxyCurrentTimes);
     }
+
+
     return proxyCurrentTimes;
   }
 }
