@@ -28,12 +28,12 @@ public final class FindMeetingQuery {
    * @return A collection of TimeRanges when the meeting can be held
    */
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
-    final long MEETING_DURATION = request.getDuration();
-    final Collection<String> MANDATORY_PEOPLE = request.getAttendees();
-    final Collection<String> OPTIONAL_PEOPLE = request.getOptionalAttendees();
+    final long meetingDuration = request.getDuration();
+    final Collection<String> mandatoryPeople = request.getAttendees();
+    final Collection<String> optionalPeople = request.getOptionalAttendees();
     List<TimeRange> options = new ArrayList<TimeRange>();
 
-    if (MEETING_DURATION > TimeRange.END_OF_DAY) {
+    if (meetingDuration > TimeRange.END_OF_DAY) {
       return options;
     }
 
@@ -41,8 +41,8 @@ public final class FindMeetingQuery {
 
     for (Event event : events) {
       for (String attendee : event.getAttendees()) {
-        if (MANDATORY_PEOPLE.contains(attendee)) {
-          options = updateAvailableTimes(options, event.getWhen(), MEETING_DURATION);
+        if (mandatoryPeople.contains(attendee)) {
+          options = updateAvailableTimes(options, event.getWhen(), meetingDuration);
         }
       }
     }
@@ -51,14 +51,14 @@ public final class FindMeetingQuery {
 
     for (Event event : events) {
       for (String attendee : event.getAttendees()) {
-        if (OPTIONAL_PEOPLE.contains(attendee)) {
+        if (optionalPeople.contains(attendee)) {
           optionsIncludingOptional =
-              updateAvailableTimes(optionsIncludingOptional, event.getWhen(), MEETING_DURATION);
+              updateAvailableTimes(optionsIncludingOptional, event.getWhen(), meetingDuration);
         }
       }
     }
 
-    if (!(optionsIncludingOptional.isEmpty()) || MANDATORY_PEOPLE.isEmpty()) {
+    if (!optionsIncludingOptional.isEmpty() || mandatoryPeople.isEmpty()) {
       Collections.sort(optionsIncludingOptional, TimeRange.ORDER_BY_START);
 
       return optionsIncludingOptional;
@@ -75,7 +75,8 @@ public final class FindMeetingQuery {
    * @param meetingDuration: The length of the meeting request
    * @return A list of updated TimeRanges when a meeting can be scheduled
    */
-  public List<TimeRange> updateAvailableTimes(List<TimeRange> currentTimes, TimeRange unavailableTime, long meetingDuration) {
+  public List<TimeRange> updateAvailableTimes(
+      List<TimeRange> currentTimes, TimeRange unavailableTime, long meetingDuration) {
     List<TimeRange> proxyCurrentTimes = new ArrayList<TimeRange>();
 
     for (TimeRange time : currentTimes) {
