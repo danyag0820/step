@@ -16,10 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/entityAnalysis")
 public class EntityAnalysisServlet extends HttpServlet {
-  //       private static String toJSON(ArrayList<Message> messages) {
-  //     Gson gson = new Gson();
-  //     return gson.toJson(messages);
-  //   }
 
   @Override
   public void doPost(HttpServletRequest servletRequest, HttpServletResponse servletResponse)
