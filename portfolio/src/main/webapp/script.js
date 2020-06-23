@@ -126,7 +126,8 @@ function loadImages() {
     '/images/friendImages/IMG-8269.jpg', '/images/natureImages/IMG-7379.JPG',
     '/images/natureImages/IMG-7383.JPG', '/images/friendImages/IMG-1539.JPG',
     '/images/natureImages/IMG-7621.JPG', '/images/natureImages/IMG-9385.jpg'
-  ] for (i = 0; i < images.length; i++) {
+  ];
+  for (i = 0; i < images.length; i++) {
     var img = new Image();
     img.onload = document.getElementById('photos').appendChild(img);
     img.src = images[i];

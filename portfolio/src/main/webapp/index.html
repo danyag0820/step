@@ -84,6 +84,20 @@
             </form>
             <div id = 'messageContainer' class = 'formText'></div>
         </div>
+
+        <p> Sentiment Analysis</p>
+         <form method="POST" action="/sentiment">
+            <textarea name="message"></textarea>
+            <br/>
+            <button>Submit</button>
+        </form>
+
+        <p> Entity Sentiment Analysis</p>
+         <form method="POST" action="/entityAnalysis">
+            <textarea name="entityMessage"></textarea>
+            <br/>
+            <button>Submit</button>
+        </form>
     
     </div>
   </body>
