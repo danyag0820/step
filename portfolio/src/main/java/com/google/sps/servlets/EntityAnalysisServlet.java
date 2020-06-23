@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/entityAnalysis")
 public class EntityAnalysisServlet extends HttpServlet {
-
   @Override
   public void doPost(HttpServletRequest servletRequest, HttpServletResponse servletResponse)
       throws IOException {
