@@ -33,7 +33,7 @@ public class SentimentAnalysisServlet extends HttpServlet {
       Document doc =
           Document.newBuilder().setContent(message).setType(Document.Type.PLAIN_TEXT).build();
       Sentiment sentiment = languageService.analyzeSentiment(doc).getDocumentSentiment();
-      ;
+      
 
       // Output the sentiment score as HTML.
       // A real project would probably store the score alongside the content.
