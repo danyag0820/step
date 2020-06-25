@@ -1,0 +1,54 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+  <title>Book Homepage</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+  <script src="script.js"></script>
+</head>
+<body>
+    <div ng-app="myApp" ng-controller="MainController">
+        <a href="detailedBook">detailed book</a>
+       <div ng-repeat="x in bookList"> <div ng-include="'templateUrl'"></div> </div>
+       <!-- <div>{{params}}</div>
+       <div>{{bookList}}</div> -->
+
+       <detailed-book></detailed-book>
+    </div>
+</body>
+<script>
+    
+var app = angular.module('myApp', ["ngRoute"]);
+app.controller('MainController', function($scope, $http, $route, $routeParams) {
+  $http.get("bookHomepage")
+  .then(function(response) {
+    $scope.bookList = response.data;
+  });
+});
+app.config([$routeProvider],
+    function config($routeProvider) {
+    $routeProvider
+        .when('/book:bookId', {
+            template: '<detailed-book></detailed-book>'
+            //controller: "BookController"
+        })
+})
+
+
+//app.controller('BookController', function($scope, $http) {
+  //$http.get("singleBook",{
+    //  params : {"id" : "2"}
+  //})
+  //.then(function(response) {
+    //$scope.singleBook = response.data;
+  //});
+//});
+
+
+</script>
+</html>
+
+

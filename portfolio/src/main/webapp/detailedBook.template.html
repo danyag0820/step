@@ -1,0 +1,49 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+  <title>Book Template</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+  <script src="script.js"></script>
+</head>
+<body>
+    <div ng-app="myApp" ng-controller="myCtrl">
+        <div>{{singleBook.id}} {{singleBook.name}} {{singleBook.author}} {{singleBook.rating}}</div>
+        <!-- <div>{{singleBook}}</div>
+        <div>{{singleBook.name}}</div> -->
+        <div> Book Name!!: {{params.bookId}}</div>
+    </div>
+
+</body>
+<script>
+    
+//var app = angular.module('myApp', ["ngRoute"]); uses the same module as bookTempalate.html
+//app.controller('myCtrl', function($scope, $http) {
+  //$http.get("singleBook",{
+    //  params : {"id" : "2"}
+  //})
+  //.then(function(response) {
+    //$scope.singleBook = response.data;
+  //});
+//});
+app.component('detailedBook', {
+    template:
+        '<div>{{singleBook.id}} {{singleBook.name}} {{singleBook.author}} {{singleBook.rating}}</div>'
+    
+    .controller('myCtrl', function($scope, $http) {
+        $http.get("singleBook",{
+            params : {"id" : "2"}
+        })
+        .then(function(response) {
+            $scope.singleBook = response.data;
+  });
+});
+})
+
+
+</script>
+</html>
+
